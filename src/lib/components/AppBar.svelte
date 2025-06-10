@@ -1,23 +1,52 @@
-<script>
-  import { Menu, X, Camera, Sun, Moon, Github } from '@lucide/svelte';
-  let isOpen = false;
+<script lang="ts">
+  // 引入icon
+  import { Camera, Sun, Moon, Github } from '@lucide/svelte';
+  import { toggleTheme } from '$lib/theme';
+  // Appbar名稱
   export let title = 'My App';
+  let isDark = false;
+
+  function changeTheme() {
+    toggleTheme();
+    isDark = document.documentElement.classList.contains('dark');
+  }
+
+  import { onMount } from 'svelte';
+  onMount(() => {
+    isDark = document.documentElement.classList.contains('dark');
+  });
 </script>
 
-<nav class="bg-gray-800 px-4 py-3 text-white shadow-md">
+<nav
+  class="bg-brand-appbar dark:bg-darkbrand-appbar text-brand-text dark:text-darkbrand-text mb-4 px-4 py-3"
+>
   <div class="container mx-auto flex items-center justify-between">
     <!-- 左側logo -->
     <div class="flex items-center gap-2 text-xl font-semibold">
       <Camera size="24" />
-      <a href="/">{title}</a>
+      <span class="text-xl font-semibold">{title}</span>
     </div>
 
-    <!-- 右側Icon -->
+    <!-- DarkMode切換 -->
     <div class="hidden items-center space-x-6 md:flex">
-      <a href="/" class="block flex items-center gap-2 hover:text-gray-300">
-        <Sun size="24" />
-      </a>
-      <a href="/github" class="block flex items-center gap-2 hover:text-gray-300">
+      <button
+        on:click={changeTheme}
+        class="block flex cursor-pointer
+              items-center gap-2
+              hover:text-gray-500"
+      >
+        {#if isDark}
+          <Moon size="24" />
+        {:else}
+          <Sun size="24" />
+        {/if}
+      </button>
+      <a
+        href="https://github.com/th0225/camera-selector"
+        class="block flex items-center gap-2 hover:text-gray-500"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <Github size="24" />
       </a>
     </div>
