@@ -3,11 +3,8 @@
   export let lensType = 'telecentric';
 </script>
 
-<div
-  class="bg-calico-secondary dark:bg-dark-secondary
-          mx-auto max-w-md rounded-lg p-6 shadow"
->
-  <p class="text-calico-black dark:text-dark-black mb-2 font-semibold">
+<div class="bg-calico-secondary dark:bg-dark-secondary rounded-lg p-6 shadow">
+  <p class="text-calico-black dark:text-dark-orange mb-2 font-semibold">
     選擇鏡頭類型：
   </p>
 
@@ -31,4 +28,3 @@
     <span class="text-calico-text dark:text-dark-text ml-2">一般鏡頭</span>
   </label>
 </div>
-<br />

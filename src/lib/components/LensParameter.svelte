@@ -1,57 +1,48 @@
 <script>
   export let isTelecentric = true;
+  import { calculate } from '$lib/client';
 </script>
 
 <form
-  class="bg-calico-secondary dark:bg-dark-secondary
-          mx-auto max-w-md rounded-lg p-6 shadow"
+  class="bg-calico-secondary dark:bg-dark-secondary flex flex-col justify-center gap-4
+          rounded-lg p-6 shadow"
 >
   <label class="block">
-    <span class="text-calico-black dark:text-dark-black"
-      >相機長邊解析度 (pixel)</span
-    >
+    <span class="input-text-style">相機長邊解析度 (pixel)</span>
     <input type="text" name="pixelWidth" class="input-style" />
   </label>
-  <br />
 
   <label class="block">
-    <span class="text-calico-black dark:text-dark-black"
-      >相機短邊解析度 (pixel)</span
-    >
+    <span class="input-text-style">相機短邊解析度 (pixel)</span>
     <input type="text" name="pixelHeight" class="input-style" />
   </label>
-  <br />
 
   <label class="block">
-    <span class="text-calico-black dark:text-dark-black">像素尺寸 (um)</span>
+    <span class="input-text-style">像素尺寸 (um)</span>
     <input type="text" name="pixelSize" class="input-style" />
   </label>
-  <br />
 
   {#if isTelecentric}
     <label class="block">
-      <span class="text-calico-black dark:text-dark-black">遠心鏡頭倍率</span>
+      <span class="input-text-style">遠心鏡頭倍率</span>
       <input type="text" name="magnification" class="input-style" />
     </label>
-    <br />
   {:else}
     <label class="block">
-      <span class="text-calico-black dark:text-dark-black">鏡頭焦距 (mm)</span>
+      <span class="input-text-style">鏡頭焦距 (mm)</span>
       <input type="text" name="focalLength" class="input-style" />
     </label>
-    <br />
 
     <label class="block">
-      <span class="text-calico-black dark:text-dark-black">工作距離 (mm)</span>
+      <span class="input-text-style">工作距離 (mm)</span>
       <input type="text" name="workingDistance" class="input-style" />
     </label>
-    <br />
   {/if}
 
-  <div class="flex justify-end gap-3">
+  <div class="mt-4 flex justify-end gap-3">
     <button
       type="submit"
-      class="bg-calico-orange dark:bg-dark-orange text-calico-text dark:text-dark-text
+      class="bg-calico-orange dark:bg-dark-orange text-calico-text dark:text-dark-bg
               rounded px-4
               py-2
               hover:bg-[#ff9944] active:bg-[#e88433]
@@ -67,5 +58,3 @@
     >
   </div>
 </form>
-
-<br />
