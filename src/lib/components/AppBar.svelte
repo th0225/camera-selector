@@ -31,12 +31,10 @@
     </div>
 
     <!-- 主題顏色切換 -->
-    <div class="hidden items-center space-x-6 md:flex">
+    <div class="flex items-center gap-6">
       <button
         on:click={changeTheme}
-        class="block flex cursor-pointer
-              items-center gap-2
-              hover:text-gray-500"
+        class="flex cursor-pointer items-center gap-2 hover:text-gray-500"
       >
         {#if isDark}
           <Moon size="24" />
