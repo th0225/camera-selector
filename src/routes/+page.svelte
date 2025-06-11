@@ -6,7 +6,7 @@
   let selectedLensType = 'telecentric';
 </script>
 
-<div class="bg-brand-background dark:bg-darkbrand-background min-h-screen ">
+<div class="bg-calido-bg dark:bg-dark-bg min-h-screen ">
   <AppBar title="Lens Selector" />
   <LensSelector bind:lensType={selectedLensType} />
   <LensParameter isTelecentric={selectedLensType === 'telecentric'} />

@@ -1,11 +1,13 @@
 <script>
+  // 選擇鏡頭類型的組件
   export let lensType = 'telecentric';
 </script>
 
 <div
-  class="bg-brand-appbar dark:bg-darkbrand-appbar mx-auto max-w-md rounded-lg p-6 shadow"
+  class="bg-calico-secondary dark:bg-dark-secondary
+          mx-auto max-w-md rounded-lg p-6 shadow"
 >
-  <p class="text-brand-text dark:text-darkbrand-text mb-2 font-semibold">
+  <p class="text-calico-black dark:text-dark-black mb-2 font-semibold">
     選擇鏡頭類型：
   </p>
 
@@ -16,7 +18,7 @@
       value="telecentric"
       class="form-radio"
     />
-    <span class="text-brand-text dark:text-darkbrand-text ml-2">遠心鏡頭</span>
+    <span class="text-calico-text dark:text-dark-text ml-2">遠心鏡頭</span>
   </label>
 
   <label class="ml-4 inline-flex cursor-pointer items-center">
@@ -26,7 +28,7 @@
       value="normal"
       class="form-radio"
     />
-    <span class="text-brand-text dark:text-darkbrand-text ml-2">一般鏡頭</span>
+    <span class="text-calico-text dark:text-dark-text ml-2">一般鏡頭</span>
   </label>
 </div>
 <br />

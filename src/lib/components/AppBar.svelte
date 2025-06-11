@@ -4,21 +4,24 @@
   import { toggleTheme } from '$lib/theme';
   // Appbar名稱
   export let title = 'My App';
+  // 是否為深色模式
   let isDark = false;
-
+  // 切換主題顏色
   function changeTheme() {
     toggleTheme();
     isDark = document.documentElement.classList.contains('dark');
   }
-
+  // 在組件掛載時檢查當前主題
   import { onMount } from 'svelte';
   onMount(() => {
     isDark = document.documentElement.classList.contains('dark');
   });
 </script>
 
+<!-- Appbar -->
 <nav
-  class="bg-brand-appbar dark:bg-darkbrand-appbar text-brand-text dark:text-darkbrand-text mb-4 px-4 py-3"
+  class="bg-calico-secondary dark:bg-dark-secondary
+        text-calico-black dark:text-dark-black mb-4 px-4 py-3"
 >
   <div class="container mx-auto flex items-center justify-between">
     <!-- 左側logo -->
@@ -27,7 +30,7 @@
       <span class="text-xl font-semibold">{title}</span>
     </div>
 
-    <!-- DarkMode切換 -->
+    <!-- 主題顏色切換 -->
     <div class="hidden items-center space-x-6 md:flex">
       <button
         on:click={changeTheme}
