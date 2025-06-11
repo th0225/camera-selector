@@ -1,41 +1,82 @@
-<script>
-  export let isTelecentric = true;
+<script lang="ts">
   import { calculate } from '$lib/client';
+  import { calculationResult } from '$lib/stores';
+
+  export let isTelecentric = true;
+
+  let formData = {
+    pixelWidth: '',
+    pixelHeight: '',
+    pixelSize: '',
+    magnification: '',
+    focalLength: '',
+    workingDistance: ''
+  };
+
+  const handleSubmit = async () => {
+    const data = {
+      pixelWidth: +formData.pixelWidth,
+      pixelHeight: +formData.pixelHeight,
+      pixelSize: +formData.pixelSize,
+      magnification: isTelecentric ? +formData.magnification : undefined,
+      focalLength: isTelecentric ? undefined : +formData.focalLength,
+      workingDistance: isTelecentric ? undefined : +formData.workingDistance
+    };
+
+    const result = await calculate(data);
+
+    console.log(result);
+
+    calculationResult.set(result);
+  };
 </script>
 
 <form
+  on:submit={handleSubmit}
   class="bg-calico-secondary dark:bg-dark-secondary flex flex-col justify-center gap-4
           rounded-lg p-6 shadow"
 >
   <label class="block">
     <span class="input-text-style">相機長邊解析度 (pixel)</span>
-    <input type="text" name="pixelWidth" class="input-style" />
+    <input type="text" bind:value={formData.pixelWidth} class="input-style" />
   </label>
 
   <label class="block">
     <span class="input-text-style">相機短邊解析度 (pixel)</span>
-    <input type="text" name="pixelHeight" class="input-style" />
+    <input type="text" bind:value={formData.pixelHeight} class="input-style" />
   </label>
 
   <label class="block">
     <span class="input-text-style">像素尺寸 (um)</span>
-    <input type="text" name="pixelSize" class="input-style" />
+    <input type="text" bind:value={formData.pixelSize} class="input-style" />
   </label>
 
   {#if isTelecentric}
     <label class="block">
       <span class="input-text-style">遠心鏡頭倍率</span>
-      <input type="text" name="magnification" class="input-style" />
+      <input
+        type="text"
+        bind:value={formData.magnification}
+        class="input-style"
+      />
     </label>
   {:else}
     <label class="block">
       <span class="input-text-style">鏡頭焦距 (mm)</span>
-      <input type="text" name="focalLength" class="input-style" />
+      <input
+        type="text"
+        bind:value={formData.focalLength}
+        class="input-style"
+      />
     </label>
 
     <label class="block">
       <span class="input-text-style">工作距離 (mm)</span>
-      <input type="text" name="workingDistance" class="input-style" />
+      <input
+        type="text"
+        bind:value={formData.workingDistance}
+        class="input-style"
+      />
     </label>
   {/if}
 
