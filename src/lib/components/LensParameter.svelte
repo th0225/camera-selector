@@ -1,33 +1,54 @@
 <script lang="ts">
   import { calculate } from '$lib/client';
-  import { calculationResult } from '$lib/stores';
+  import { resultData, parameterData } from '$lib/stores';
 
   export let isTelecentric = true;
 
-  let formData = {
-    pixelWidth: '',
-    pixelHeight: '',
-    pixelSize: '',
-    magnification: '',
-    focalLength: '',
-    workingDistance: ''
-  };
+  // 重置表格數據
+  function resetTables() {
+    parameterData.set({
+      pixelWidth: '',
+      pixelHeight: '',
+      pixelSize: '',
+      magnification: '',
+      focalLength: '',
+      workingDistance: ''
+    });
 
+    resultData.set({
+      fieldWidthMM: '',
+      fieldHeightMM: '',
+      resolutionUm: '',
+      fieldWidthInch: '',
+      fieldHeightInch: '',
+      resolutionInch: ''
+    });
+  }
+
+  // 提交表單數據並交由後端計算
   const handleSubmit = async () => {
     const data = {
-      pixelWidth: +formData.pixelWidth,
-      pixelHeight: +formData.pixelHeight,
-      pixelSize: +formData.pixelSize,
-      magnification: isTelecentric ? +formData.magnification : undefined,
-      focalLength: isTelecentric ? undefined : +formData.focalLength,
-      workingDistance: isTelecentric ? undefined : +formData.workingDistance
+      pixelWidth: +$parameterData.pixelWidth,
+      pixelHeight: +$parameterData.pixelHeight,
+      pixelSize: +$parameterData.pixelSize,
+      magnification: isTelecentric ? +$parameterData.magnification : undefined,
+      focalLength: isTelecentric ? undefined : +$parameterData.focalLength,
+      workingDistance: isTelecentric
+        ? undefined
+        : +$parameterData.workingDistance
     };
-
+    // 取得計算結果
     const result = await calculate(data);
+    // 顯示結果至表格
+    resultData.set({
+      fieldWidthMM: result.fieldWidthMM,
+      fieldHeightMM: result.fieldHeightMM,
+      resolutionUm: result.resolutionUm,
+      fieldWidthInch: result.fieldWidthInch,
+      fieldHeightInch: result.fieldHeightInch,
+      resolutionInch: result.resolutionInch
+    });
 
-    console.log(result);
-
-    calculationResult.set(result);
   };
 </script>
 
@@ -38,17 +59,32 @@
 >
   <label class="block">
     <span class="input-text-style">相機長邊解析度 (pixel)</span>
-    <input type="text" bind:value={formData.pixelWidth} class="input-style" />
+    <input
+      type="text"
+      placeholder="2448"
+      bind:value={$parameterData.pixelWidth}
+      class="input-style"
+    />
   </label>
 
   <label class="block">
     <span class="input-text-style">相機短邊解析度 (pixel)</span>
-    <input type="text" bind:value={formData.pixelHeight} class="input-style" />
+    <input
+      type="text"
+      placeholder="2048"
+      bind:value={$parameterData.pixelHeight}
+      class="input-style"
+    />
   </label>
 
   <label class="block">
     <span class="input-text-style">像素尺寸 (um)</span>
-    <input type="text" bind:value={formData.pixelSize} class="input-style" />
+    <input
+      type="text"
+      placeholder="3.45"
+      bind:value={$parameterData.pixelSize}
+      class="input-style"
+    />
   </label>
 
   {#if isTelecentric}
@@ -56,7 +92,8 @@
       <span class="input-text-style">遠心鏡頭倍率</span>
       <input
         type="text"
-        bind:value={formData.magnification}
+        placeholder="0.8"
+        bind:value={$parameterData.magnification}
         class="input-style"
       />
     </label>
@@ -65,7 +102,7 @@
       <span class="input-text-style">鏡頭焦距 (mm)</span>
       <input
         type="text"
-        bind:value={formData.focalLength}
+        bind:value={$parameterData.focalLength}
         class="input-style"
       />
     </label>
@@ -74,7 +111,7 @@
       <span class="input-text-style">工作距離 (mm)</span>
       <input
         type="text"
-        bind:value={formData.workingDistance}
+        bind:value={$parameterData.workingDistance}
         class="input-style"
       />
     </label>
@@ -93,6 +130,7 @@
     >
     <button
       type="reset"
+      on:click={resetTables}
       class="rounded bg-gray-200 px-4 py-2 text-gray-800
               transition transition-transform duration-100
               hover:bg-gray-300 active:bg-gray-400">重置</button

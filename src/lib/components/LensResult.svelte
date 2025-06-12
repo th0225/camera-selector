@@ -1,11 +1,5 @@
 <script lang="ts">
-  import { calculationResult } from '$lib/stores';
-  import { onMount } from 'svelte';
-  import { get } from 'svelte/store';
-
-  let result: any = null;
-
-  $: result = $calculationResult;
+  import { resultData } from '$lib/stores';
 </script>
 
 <div class="flex flex-col gap-4">
@@ -16,7 +10,7 @@
       <span class="input-text-style">長邊視野範圍 (mm)</span>
       <input
         type="text"
-        value={result?.fieldWidthMM ?? ''}
+        bind:value={$resultData.fieldWidthMM}
         class="input-style"
         readonly
       />
@@ -26,7 +20,7 @@
       <span class="input-text-style">短邊視野範圍 (mm)</span>
       <input
         type="text"
-        value={result?.fieldHeightMM ?? ''}
+        bind:value={$resultData.fieldHeightMM}
         class="input-style"
         readonly
       />
@@ -36,7 +30,7 @@
       <span class="input-text-style">像素精度 (um)</span>
       <input
         type="text"
-        value={result?.resolutionUm ?? ''}
+        bind:value={$resultData.resolutionUm}
         class="input-style"
         readonly
       />
@@ -50,7 +44,7 @@
       <span class="input-text-style">長邊視野範圍 (inch)</span>
       <input
         type="text"
-        value={result?.fieldWidthInch ?? ''}
+        bind:value={$resultData.fieldWidthInch}
         class="input-style"
         readonly
       />
@@ -60,7 +54,7 @@
       <span class="input-text-style">短邊視野範圍 (inch)</span>
       <input
         type="text"
-        value={result?.fieldHeightInch ?? ''}
+        bind:value={$resultData.fieldHeightInch}
         class="input-style"
         readonly
       />
@@ -70,7 +64,7 @@
       <span class="input-text-style">像素精度 (inch)</span>
       <input
         type="text"
-        value={result?.resolutionInch ?? ''}
+        bind:value={$resultData.resolutionInch}
         class="input-style"
         readonly
       />

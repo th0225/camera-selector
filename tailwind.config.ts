@@ -15,7 +15,7 @@ const config: Config = {
           orangeActive: '#E88433',
           black: '#444444',
           text: '#2B2B2B',
-          soft: '#5A5A5A'
+          soft: '#9E9E9E'
         },
         dark: {
           bg: '#1F1F1F',
