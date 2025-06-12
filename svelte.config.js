@@ -4,8 +4,8 @@ const dev = process.env.NODE_ENV === 'development';
 const config = {
   kit: {
     adapter: adapter({
-      pages: 'docs',
-      assets: 'docs',
+      pages: 'build',
+      assets: 'build',
       fallback: '404.html'
     }),
     paths: {
