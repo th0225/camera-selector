@@ -48,7 +48,6 @@
       fieldHeightInch: result.fieldHeightInch,
       resolutionInch: result.resolutionInch
     });
-
   };
 </script>
 
@@ -57,30 +56,33 @@
   class="bg-calico-secondary dark:bg-dark-secondary flex flex-col justify-center gap-4
           rounded-lg p-6 shadow"
 >
-  <label class="block">
+  <label class="block" for="pixelWidth">
     <span class="input-text-style">相機長邊解析度 (pixel)</span>
     <input
       type="text"
+      id="pixelWidth"
       placeholder="2448"
       bind:value={$parameterData.pixelWidth}
       class="input-style"
     />
   </label>
 
-  <label class="block">
+  <label class="block" for="pixelHeight">
     <span class="input-text-style">相機短邊解析度 (pixel)</span>
     <input
       type="text"
+      id="pixelHeight"
       placeholder="2048"
       bind:value={$parameterData.pixelHeight}
       class="input-style"
     />
   </label>
 
-  <label class="block">
+  <label class="block" for="pixelSize">
     <span class="input-text-style">像素尺寸 (um)</span>
     <input
       type="text"
+      id="pixelSize"
       placeholder="3.45"
       bind:value={$parameterData.pixelSize}
       class="input-style"
@@ -88,29 +90,34 @@
   </label>
 
   {#if isTelecentric}
-    <label class="block">
+    <label class="block" for="magnification">
       <span class="input-text-style">遠心鏡頭倍率</span>
       <input
         type="text"
+        id="magnification"
         placeholder="0.8"
         bind:value={$parameterData.magnification}
         class="input-style"
       />
     </label>
   {:else}
-    <label class="block">
+    <label class="block" for="focalLength">
       <span class="input-text-style">鏡頭焦距 (mm)</span>
       <input
         type="text"
+        id="focalLength"
+        placeholder="25"
         bind:value={$parameterData.focalLength}
         class="input-style"
       />
     </label>
 
-    <label class="block">
+    <label class="block" for="workingDistance">
       <span class="input-text-style">工作距離 (mm)</span>
       <input
         type="text"
+        id="workingDistance"
+        placeholder="100"
         bind:value={$parameterData.workingDistance}
         class="input-style"
       />

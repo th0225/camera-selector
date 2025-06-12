@@ -1,5 +1,4 @@
-const API_URL = 'https://localhost:7174/api/calculate';
-let result = null;
+const API_URL = import.meta.env.VITE_API_URL;
 
 export async function calculate(data) {
   const response = await fetch(API_URL, {

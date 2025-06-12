@@ -34,6 +34,7 @@
     <div class="flex items-center gap-6">
       <button
         on:click={changeTheme}
+        aria-label="切換主題顏色"
         class="flex cursor-pointer items-center gap-2 hover:text-gray-500"
       >
         {#if isDark}
@@ -45,6 +46,7 @@
       <a
         href="https://github.com/th0225/camera-selector"
         class="block flex items-center gap-2 hover:text-gray-500"
+        aria-label="GitHub"
         target="_blank"
         rel="noopener noreferrer"
       >

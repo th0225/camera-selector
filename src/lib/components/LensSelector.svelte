@@ -8,9 +8,10 @@
     選擇鏡頭類型：
   </p>
 
-  <label class="inline-flex cursor-pointer items-center">
+  <label class="inline-flex cursor-pointer items-center" for="telecentric">
     <input
       type="radio"
+      id="telecentric"
       bind:group={lensType}
       value="telecentric"
       class="form-radio"
@@ -18,9 +19,10 @@
     <span class="text-calico-text dark:text-dark-text ml-2">遠心鏡頭</span>
   </label>
 
-  <label class="ml-4 inline-flex cursor-pointer items-center">
+  <label class="ml-4 inline-flex cursor-pointer items-center" for="normal">
     <input
       type="radio"
+      id="normal"
       bind:group={lensType}
       value="normal"
       class="form-radio"
