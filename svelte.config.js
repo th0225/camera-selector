@@ -9,7 +9,7 @@ const config = {
       fallback: '404.html'
     }),
     paths: {
-      base: dev ? '' : '/camera-selector',
+      base: dev ? '' : '/pixel-scope',
       relative: false
     }
   }

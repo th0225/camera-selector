@@ -44,7 +44,7 @@
         {/if}
       </button>
       <a
-        href="https://github.com/th0225/camera-selector"
+        href="https://github.com/th0225/pixel-scope"
         class="block flex items-center gap-2 hover:text-gray-500"
         aria-label="GitHub"
         target="_blank"

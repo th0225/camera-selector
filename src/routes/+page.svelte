@@ -7,7 +7,7 @@
 </script>
 
 <div class="bg-calido-bg dark:bg-dark-bg min-h-screen">
-  <AppBar title="Lens Selector" />
+  <AppBar title="Pixel Scope" />
 
   <div class="mx-auto max-w-4xl space-y-6 px-4">
     <LensSelector bind:lensType={selectedLensType} />
