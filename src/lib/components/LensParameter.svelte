@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { calculate } from '$lib/client';
   import { resultData, parameterData } from '$lib/stores';
 
   export let isTelecentric = true;
@@ -25,28 +24,56 @@
     });
   }
 
-  // 提交表單數據並交由後端計算
+  // 提交表單數據並計算
   const handleSubmit = async () => {
-    const data = {
-      pixelWidth: +$parameterData.pixelWidth,
-      pixelHeight: +$parameterData.pixelHeight,
-      pixelSize: +$parameterData.pixelSize,
-      magnification: isTelecentric ? +$parameterData.magnification : undefined,
-      focalLength: isTelecentric ? undefined : +$parameterData.focalLength,
-      workingDistance: isTelecentric
-        ? undefined
-        : +$parameterData.workingDistance
-    };
-    // 取得計算結果
-    const result = await calculate(data);
+    let fieldHeightMM;
+    let fieldWidthMM;
+    let resolutionUm;
+    let fieldWidthInch;
+    let fieldHeightInch;
+    let resolutionInch;
+    if (isTelecentric) {
+      fieldHeightMM =
+        (+$parameterData.pixelHeight * +$parameterData.pixelSize) /
+        1000 /
+        +$parameterData.magnification;
+      fieldWidthMM =
+        (+$parameterData.pixelWidth * +$parameterData.pixelSize) /
+        1000 /
+        +$parameterData.magnification;
+      resolutionUm = (fieldHeightMM / +$parameterData.pixelHeight) * 1000;
+
+      fieldWidthInch = fieldWidthMM / 25.4;
+      fieldHeightInch = fieldHeightMM / 25.4;
+      resolutionInch = resolutionUm / 1000 / 25.4;
+    } else {
+      fieldHeightMM =
+        (+$parameterData.pixelHeight *
+          +$parameterData.pixelSize *
+          +$parameterData.workingDistance) /
+        1000 /
+        +$parameterData.focalLength;
+      fieldWidthMM =
+        (+$parameterData.pixelWidth *
+          +$parameterData.pixelSize *
+          +$parameterData.workingDistance) /
+        1000 /
+        +$parameterData.focalLength;
+      resolutionUm = (fieldHeightMM / +$parameterData.pixelHeight) * 1000;
+
+      fieldWidthInch = fieldWidthMM / 25.4;
+      fieldHeightInch = fieldHeightMM / 25.4;
+      resolutionInch = resolutionUm / 1000 / 25.4;
+    }
+
     // 顯示結果至表格
     resultData.set({
-      fieldWidthMM: result.fieldWidthMM,
-      fieldHeightMM: result.fieldHeightMM,
-      resolutionUm: result.resolutionUm,
-      fieldWidthInch: result.fieldWidthInch,
-      fieldHeightInch: result.fieldHeightInch,
-      resolutionInch: result.resolutionInch
+      fieldWidthMM: fieldWidthMM.toFixed(6).toString(),
+      fieldHeightMM: fieldHeightMM.toFixed(6).toString(),
+      resolutionUm: resolutionUm.toFixed(6).toString(),
+      fieldWidthInch: fieldWidthInch.toFixed(6).toString(),
+      fieldHeightInch: fieldHeightInch.toFixed(6).toString(),
+      resolutionInch: resolutionInch.toFixed(6).toString()
     });
   };
 </script>
