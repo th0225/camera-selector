@@ -1,85 +1,15 @@
 <script lang="ts">
-  import { resultData, parameterData } from '$lib/stores';
-
+  import { parameterData } from '$lib/stores';
+  import { handleSubmit, resetTables } from '$lib/logic/formHandler';
   export let isTelecentric = true;
 
-  // 重置表格數據
-  function resetTables() {
-    parameterData.set({
-      pixelWidth: '',
-      pixelHeight: '',
-      pixelSize: '',
-      magnification: '',
-      focalLength: '',
-      workingDistance: ''
-    });
-
-    resultData.set({
-      fieldWidthMM: '',
-      fieldHeightMM: '',
-      resolutionUm: '',
-      fieldWidthInch: '',
-      fieldHeightInch: '',
-      resolutionInch: ''
-    });
-  }
-
-  // 提交表單數據並計算
-  const handleSubmit = async () => {
-    let fieldHeightMM;
-    let fieldWidthMM;
-    let resolutionUm;
-    let fieldWidthInch;
-    let fieldHeightInch;
-    let resolutionInch;
-    if (isTelecentric) {
-      fieldHeightMM =
-        (+$parameterData.pixelHeight * +$parameterData.pixelSize) /
-        1000 /
-        +$parameterData.magnification;
-      fieldWidthMM =
-        (+$parameterData.pixelWidth * +$parameterData.pixelSize) /
-        1000 /
-        +$parameterData.magnification;
-      resolutionUm = (fieldHeightMM / +$parameterData.pixelHeight) * 1000;
-
-      fieldWidthInch = fieldWidthMM / 25.4;
-      fieldHeightInch = fieldHeightMM / 25.4;
-      resolutionInch = resolutionUm / 1000 / 25.4;
-    } else {
-      fieldHeightMM =
-        (+$parameterData.pixelHeight *
-          +$parameterData.pixelSize *
-          +$parameterData.workingDistance) /
-        1000 /
-        +$parameterData.focalLength;
-      fieldWidthMM =
-        (+$parameterData.pixelWidth *
-          +$parameterData.pixelSize *
-          +$parameterData.workingDistance) /
-        1000 /
-        +$parameterData.focalLength;
-      resolutionUm = (fieldHeightMM / +$parameterData.pixelHeight) * 1000;
-
-      fieldWidthInch = fieldWidthMM / 25.4;
-      fieldHeightInch = fieldHeightMM / 25.4;
-      resolutionInch = resolutionUm / 1000 / 25.4;
-    }
-
-    // 顯示結果至表格
-    resultData.set({
-      fieldWidthMM: fieldWidthMM.toFixed(6).toString(),
-      fieldHeightMM: fieldHeightMM.toFixed(6).toString(),
-      resolutionUm: resolutionUm.toFixed(6).toString(),
-      fieldWidthInch: fieldWidthInch.toFixed(6).toString(),
-      fieldHeightInch: fieldHeightInch.toFixed(6).toString(),
-      resolutionInch: resolutionInch.toFixed(6).toString()
-    });
+  const submit = async () => {
+    await handleSubmit(isTelecentric);
   };
 </script>
 
 <form
-  on:submit={handleSubmit}
+  on:submit={submit}
   class="bg-calico-secondary dark:bg-dark-secondary flex flex-col justify-center gap-4
           rounded-lg p-6 shadow"
 >
