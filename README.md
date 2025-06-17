@@ -1,6 +1,6 @@
 # Pixel Scope
 
-https://th0225.github.io/pixel-scope/
+https://th0225.github.io/pixel-scope/\
 使用SvelteKit計算相機搭配不同鏡頭的視野和精度
 
 ---
