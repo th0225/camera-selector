@@ -1,6 +1,7 @@
 # Pixel Scope
 
-https://th0225.github.io/pixel-scope/\
+https://th0225.github.io/pixel-scope/
+
 使用SvelteKit計算相機搭配不同鏡頭的視野和精度
 
 ---
@@ -12,6 +13,7 @@ https://th0225.github.io/pixel-scope/\
 - 支援遠心鏡頭和一般鏡頭
 - 小數自動格式化（預設至小數點後 6 位）
 - 即時反應的使用者介面（SvelteKit + TypeScript）
+- 支援 PWA（Progressive Web App）
 
 ---
 
