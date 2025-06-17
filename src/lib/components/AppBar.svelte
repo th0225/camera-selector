@@ -1,7 +1,7 @@
 <script lang="ts">
   // 引入icon
   import { Camera, Sun, Moon, Github } from '@lucide/svelte';
-  import { toggleTheme } from '$lib/theme';
+  import { initTheme, toggleTheme } from '$lib/theme';
   // Appbar名稱
   export let title = 'My App';
   // 是否為深色模式
@@ -14,6 +14,7 @@
   // 在組件掛載時檢查當前主題
   import { onMount } from 'svelte';
   onMount(() => {
+    initTheme();
     isDark = document.documentElement.classList.contains('dark');
   });
 </script>
