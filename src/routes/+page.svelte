@@ -6,7 +6,7 @@
   let selectedLensType = 'telecentric';
 </script>
 
-<div class="bg-calido-bg dark:bg-dark-bg min-h-screen">
+<div class="bg-calico-bg dark:bg-dark-bg min-h-screen">
   <AppBar title="Pixel Scope" />
 
   <div class="mx-auto max-w-4xl space-y-6 px-4">
