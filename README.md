@@ -23,9 +23,9 @@ https://th0225.github.io/pixel-scope/
 - [TypeScript](https://www.typescriptlang.org/)
 - [Vite](https://vite.dev/)
 - [Svelte Store](https://svelte.dev/docs#run-time-svelte-store)
-- [tailwindcss](https://tailwindcss.com/)
+- [Tailwindcss](https://tailwindcss.com/)
 - [Lucide](https://lucide.dev/)
-- [Icons8](https://icons8.com/)
+- [Google Icons](https://fonts.google.com/icons?icon.size=48&icon.color=%231976D2)
 
 ---
 
