@@ -8,7 +8,7 @@
 </script>
 
 <div class="bg-calico-secondary dark:bg-dark-secondary rounded-lg p-6 shadow
-            flex flex-row gap-12 items-center">
+            flex flex-col gap-6 md:flex-row md:gap-12 md:items-center">
   <div>
     <p class="text-calico-black dark:text-dark-orange mb-2 font-semibold">
       選擇鏡頭類型：
